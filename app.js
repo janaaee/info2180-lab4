@@ -1,5 +1,9 @@
 document.getElementById("searchBtn").addEventListener("click", function () {
-  fetch("superheroes.php")
+  const query = document.getElementById("search").value.trim();
+
+  fetch("superheroes.php?query=" + encodeURIComponent(query))
     .then(response => response.text())
-    .then(data => alert(data));
+    .then(data => {
+      document.getElementById("result").innerHTML = data;
+    });
 });
